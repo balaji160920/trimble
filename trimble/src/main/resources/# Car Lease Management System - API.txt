@@ -1,0 +1,181 @@
+# Car Lease Management System - API Documentation
+
+## **1. Car APIs**
+### **Register a Car**
+- **Method:** POST
+- **URL:** `/cars/register`
+- **Request Body (JSON):**
+```json
+{
+  "carName": "Tesla Model S",
+  "carModel": "2025",
+  "status": "Ideal"
+}
+```
+- **Response:**
+```json
+{
+  "id": 1,
+  "carName": "Tesla Model 3",
+  "carModel": "2023",
+  "status": "Ideal"
+}
+```
+
+### **Get All Cars**
+- **Method:** GET
+- **URL:** `/cars/all`
+- **Response:**
+```json
+[
+  {
+    "id": 1,
+    "carName": "Tesla Model 3",
+    "carModel": "2023",
+    "status": "Ideal"
+  }
+]
+```
+
+### **Get Available Cars**
+- **Method:** GET
+- **URL:** `/cars/available`
+- **Response:**
+```json
+[
+  {
+    "id": 1,
+    "carName": "Tesla Model 3",
+    "status": "Ideal"
+  }
+]
+```
+
+## **2. Lease APIs**
+### **Start a Lease**
+- **Method:** POST
+- **URL:** `/lease/start`
+- **Request Body (JSON):**
+```json
+{
+  "car": {
+    "id": 1
+  },
+  "customer": {
+    "id": 2
+  },
+  "leaseStart": "2025-03-12",
+  "leaseEnd": "2025-06-12"
+}
+```
+- **Response:**
+```json
+{
+  "leaseId": 1,
+  "carId": 1,
+  "customerId": 2,
+  "leaseStart": "2025-03-12",
+  "leaseEnd": "2025-06-12"
+}
+```
+
+### **Get All Leases**
+- **Method:** GET
+- **URL:** `/lease/all`
+- **Response:**
+```json
+[
+  {
+    "leaseId": 1,
+    "carId": 1,
+    "customerId": 2,
+    "leaseStart": "2025-03-12",
+    "leaseEnd": "2025-06-12"
+  }
+]
+```
+
+## **3. User APIs**
+### **Register a User (Car Owner / End Customer)**
+- **Method:** POST
+- **URL:** `/users/register`
+- **Request Body (JSON):**
+```json
+{
+  "username": "JohnDoe",
+  "role": "CarOwner"
+}
+```
+- **Response:**
+```json
+{
+  "userId": 1,
+  "username": "JohnDoe",
+  "role": "CarOwner"
+}
+```
+
+### **Get All Users**
+- **Method:** GET
+- **URL:** `/users/all`
+- **Response:**
+```json
+[
+  {
+    "userId": 1,
+    "username": "JohnDoe",
+    "role": "CarOwner"
+  }
+]
+```
+
+## **4. Admin APIs**
+### **Get All Leases (Admin Access)**
+- **Method:** GET
+- **URL:** `/admin/leases`
+- **Response:**
+```json
+[
+  {
+    "leaseId": 1,
+    "carId": 1,
+    "customerId": 2,
+    "leaseStart": "2025-03-12",
+    "leaseEnd": "2025-06-12"
+  }
+]
+```
+
+## **5. Optional Enhancements**
+### **Filter Cars by Status**
+- **Method:** GET
+- **URL:** `/cars/status?status=Ideal`
+- **Response:**
+```json
+[
+  {
+    "id": 1,
+    "carName": "Tesla Model 3",
+    "status": "Ideal"
+  }
+]
+```
+
+### **Get User by Username**
+- **Method:** GET
+- **URL:** `/users/find?username=JohnDoe`
+- **Response:**
+```json
+{
+  "userId": 1,
+  "username": "JohnDoe",
+  "role": "CarOwner"
+}
+```
+
+## **6. H2 Database Console**
+- **URL:** `http://localhost:8080/h2-console`
+- **JDBC URL:** `jdbc:h2:mem:testdb`
+- **Username:** `sa`
+- **Password:** (Leave blank)
+
